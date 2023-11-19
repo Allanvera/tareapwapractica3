@@ -1,0 +1,56 @@
+<?php
+// Iniciar o reanudar la sesión
+session_start();
+
+// Función para generar un nuevo número aleatorio si no existe o reiniciar el juego
+function reiniciarJuego() {
+    $_SESSION['numero_adivinanza'] = rand(1, 10);
+    $_SESSION['intentos'] = 0;
+    $_SESSION['mensaje'] = '';
+}
+
+// Verificar si se ha enviado un intento
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Obtener el número ingresado por el usuario
+    $intent = isset($_POST['intent']) ? (int)$_POST['intent'] : 0;
+
+    // Incrementar el número de intentos
+    $_SESSION['intentos']++;
+
+    // Verificar si el intento coincide con el número de adivinanza
+    if ($intent == $_SESSION['numero_adivinanza']) {
+        $_SESSION['mensaje'] = "¡Felicidades! Has adivinado el número en {$_SESSION['intentos']} intentos.";
+        // Reiniciar el juego
+        reiniciarJuego();
+    } else {
+        // Proporcionar una pista al usuario
+        $_SESSION['mensaje'] = ($intent < $_SESSION['numero_adivinanza']) ? "Intenta con un número mayor." : "Intenta con un número menor.";
+    }
+} else {
+    // Iniciar el juego si no se ha enviado ningún intento
+    reiniciarJuego();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Adivinanzas</title>
+</head>
+<body>
+    <h1>Juego de Adivinanzas</h1>
+    <p>Intenta adivinar el número entre 1 y 10.</p>
+
+    <?php if (!empty($_SESSION['mensaje'])) : ?>
+        <p><?php echo $_SESSION['mensaje']; ?></p>
+    <?php endif; ?>
+
+    <form method="post">
+        <label for="intent">Tu intento:</label>
+        <input type="number" id="intent" name="intent" min="1" max="10" required>
+        <button type="submit">Adivinar</button>
+    </form>
+</body>
+</html>

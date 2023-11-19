@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Estilos básicos para el formulario */
+    form {
+      max-width: 400px;
+      margin: 20px auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    /* Estilo para mostrar mensajes de error */
+    .error-message {
+      color: red;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<form id="contactForm">
+  <label for="name">Nombre:</label>
+  <input type="text" id="name" name="name" required>
+
+  <label for="email">Correo Electrónico:</label>
+  <input type="email" id="email" name="email" required>
+
+  <label for="message">Mensaje:</label>
+  <textarea id="message" name="message" rows="4" required></textarea>
+
+  <div class="error-message" id="errorMessage"></div>
+
+  <button type="button" onclick="validateForm()">Enviar</button>
+</form>
+
+<script>
+  function validateForm() {
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var message = document.getElementById('message').value;
+    var errorMessage = document.getElementById('errorMessage');
+
+    errorMessage.innerHTML = '';
+
+    if (name.trim() === '') {
+      errorMessage.innerHTML = 'Por favor, ingresa tu nombre.';
+      return;
+    }
+
+    if (email.trim() === '') {
+      errorMessage.innerHTML = 'Por favor, ingresa tu correo electrónico.';
+      return;
+    }
+
+    if (message.trim() === '') {
+      errorMessage.innerHTML = 'Por favor, ingresa tu mensaje.';
+      return;
+    }
+
+    // Si todas las validaciones pasan, puedes enviar el formulario aquí
+    alert('Formulario enviado con éxito!');
+  }
+</script>
+
+</body>
+</html>
+

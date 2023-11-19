@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Estilo básico del menú */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Estilo del enlace del menú principal */
+    .dropdown > a {
+      text-decoration: none;
+      color: #333;
+      padding: 10px;
+      display: inline-block;
+    }
+
+    /* Estilo de la lista desplegable oculta */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    /* Estilo de las opciones de la lista desplegable */
+    .dropdown-content a {
+      color: #333;
+      padding: 12px 16px;
+      display: block;
+      text-decoration: none;
+    }
+
+    /* Cambia el color del enlace al pasar el ratón */
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Muestra la lista desplegable cuando se pasa el ratón sobre el menú principal */
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<div class="dropdown">
+  <a href="#">Menú Principal</a>
+  <div class="dropdown-content">
+    <a href="https://www.netapp.com/es/artificial-intelligence/what-is-artificial-intelligence/">Inteligencia Artificial</a>
+    <a href="https://humanidades.com/tecnologia/">Tecnologia</a>
+    <a href="https://executrain.com.mx/que-es-programacion/#:~:text=La%20programación%20es%20la%20actividad,entre%20ordenadores%20y%20los%20usuarios.">Progamacion</a>
+  </div>
+</div>
+
+</body>
+</html>
